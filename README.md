@@ -1,93 +1,92 @@
-# backup-plan
+# Backup-plan
 
+## Descripción
 
+Se trata de mi plan de respaldo para el homelab. Tratando de detallar lo máximo posible los procesos y la estructura de los backups, de forma que se reduzcan al máximo las posibilidades de pérdida de datos en caso de ocurrir algún desastre.
 
-## Getting started
+## ¿Cómo surge la idea?
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Para empezar, digamos que tengo un homelab muy humilde. Mi servidor principal es un ordenador montado por mí mismo en el que instalé Unraid y que ha pasado por varias modificaciones hasta acabar siendo como es hoy día.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+Actualmente monta un i3-10105, 8GB de RAM, tengo un array de 12TB de capacidad, un disco de paridad de 4TB, lo que me permite soportar el fallo de 1 disco y cuento con un SSD de 480GB como caché donde corren los contenedores Docker, las bases de datos y el propio caché del array. Por supuesto, todo con su correspondiente backup.
 
-## Add your files
+Además de esto, tengo un Levono M910q Tiny con Proxmox instalado que monta un i5-6600T y 16GB de RAM con la idea en un futuro de ampliar formando un clúster de varios equipos similares.
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+En mi servidor principal donde tengo Unraid, a partir de ahora "Blinkserver", es donde he estado almacenando todo mi contenido digital estos últimos años y, salvo algún disco que ha fallado y he reemplazado, no he tenido ningún susto mayor. Y gracias al disco de paridad no tuve que sufrir la pérdida de ningún archivo.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.blinkserver.es/administrador/backup-plan.git
-git branch -M main
-git push -uf origin main
-```
+Sin embargo, al ver cómo crece con el tiempo el tamaño de las carpetas y siendo ya padre, te da pavor la idea de que un día puedas perder alguno de tus archivos importantes.
 
-## Integrate with your tools
+Y cuando hablamos de archivos importantes no hablamos de la configuración de un dispositivo o un servicio. Eso es algo que, con mayor o menor trabajo, puedes volver a poner en marcha. Hablamos de fotos de tus seres queridos, documentos bancarios, burocráticos o escolares, además de tu trabajo o hobbies que tanto tiempo te han llevado conseguirlos.
 
-- [ ] [Set up project integrations](https://gitlab.blinkserver.es/administrador/backup-plan/-/settings/integrations)
+La verdad es que mentiría si no dijera que más de una noche me ha quitado el sueño la idea de que un día encienda el PC y vea que un varios discos han fallado (cosa poco probable, pero no imposible) o que el disco que ha fallado es el de paridad y si algo ocurre mientras aún no lo he reemplazado perderé algo. Y me diréis, puedes añadir un segundo disco de paridad y tenéis toda la razón, pero ¿qué ocurriría si hablamos de algún otro desastre como una inundación o un incendio? No importa cuántos discos de paridad o copias de seguridad tengas en casa, **lo perderías todo**.
 
-## Collaborate with your team
+Por eso empecé a buscar información sobre qué sistema de backups llevaba a cabo el resto de gente que tiene servidores en casa con el fin de buscar unas guías o buenas prácticas que me dieran la confianza y seguridad suficientes como para saber que prácticamente las únicas causas de pérdida de información fueran una Guerra Mundial o una invasión alienígena...algo muy poco probable.
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+## El método del 3-2-1
 
-## Test and Deploy
+Después de haber indagado bastante he visto que lo más recomendable es llevar a cabo el llamado método del 3-2-1.
 
-Use the built-in continuous integration in GitLab.
+Es un sistema muy simple, se trata de tener las copias de seguridad replicadas y distribuidas de la siguiente forma:
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+* Tener al menos **3 copias** de tus archivos (los originales no cuentan).
+* **2 de estas copias** deben estar **en medios distintos** (un NAS y un HDD externo, por ejemplo).
+* **1 copia en remoto** (cualquier servicio cloud u otro servidor lejos de las otras copias).
 
-***
+Este método minimiza en gran medida la posibilidad de perder información. Pues si falla tu copia principal, tienes la secundaria. Y si por algún motivo ambas han fallado sigues teniendo la copia remota.
 
-# Editing this README
+En mi caso tengo *3 copias* en total, aunque difiere un poco del estándar.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+* 1 copia está en casa, en un HDD externo en el servidor Proxmox.
+* 1 copia está en casa de mis padres en un servidor Proxmox que yo administro. Es una copia híbrida porque es remota, pero con fácil acceso a la misma tanto en físico como en remoto y sin depender de servicios cloud de terceros.
+* 1 copia está en Google Drive.
 
-## Suggestions for a good README
+*Nota: las copias que no están en casa (la de casa de mis padres y la de Google Drive) están cifradas para evitar que una tercera persona pueda acceder a la información.*
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+## Comprueba la fiabilidad de todas las copias
 
-## Name
-Choose a self-explaining name for your project.
+¡Cuidado! No digo que borres los datos originales, pero sí que debes comprobar que el proceso de recuperación de tus copias de seguridad es fiable y funcionará llegado el momento de necesitarlos.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+Lo que yo hago es crear una VM simulando que es un PC o servidor nuevos y desde ella poner en marcha los servicios necesarios para la recuperación de las copias de seguridad y probar una por una que todas funcionan. No las hago por completo, pero sí que cojo varios archivos al azar de cada una de ellas a modo de pequeñas muestras.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+## Software utilizado
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Actualmente utilizo una mezcla de servicios y scripts.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+- Para los archivos que viven permanentemente en el SSD de caché del servidor como son los **contenedores Docker** y las **bases de datos** uso dos opciones distintas que se llevan a cabo cada noche (***hablaremos de las bases de datos en otro punto más adelante***).
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+ En el caso de los contenedores Docker uso primero **Duplicati** que lleva una copia de las carpetas de configuración al array de discos principal del servidor, que está protegido por el disco de paridad.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+- Para las bases de datos diferenciaremos entre las genéricas (archivos .db) y las SQL que gestiono con MariaDB.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+    1. Las copias de las bases de datos genéricas (.db) se llevan a cabo de la misma forma que los contenedores Docker (punto anterior).
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+    2. Las copias de las bases de datos SQL se llevan a cabo mediante un script que hace lo siguiente:
+      - Llama al servicio de MariaDB que se encarga de realizar la copia de seguridad.
+      
+      - Comprime la copia en un archivo ZIP.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+      - Notifica por **Telegram** a través de un **Bot** y un **canal** si se han realizado correctamente o si ha ocurrido un error (***opcional***).
+      
+      - Borra las copias de seguridad que tengan más de los días indicados.
+      
+      Se ejecuta con un *cronjob*.
+    
+      Este script se encuentra en el archivo *db_backup.sh*.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+  Una vez tengo el dump de las bases de datos (copia de seguridad realizada con el script) uso **Duplicati** de nuevo para llevar una al array princpal del servidor.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+- Para los archivos que están en el array de discos principal del servidor uso **Duplicati** y **Syncthing**. *Aquí ya tengo cubierto todo lo importante, porque en el punto anterior ya han sido movidos los archivos de Docker al array principal*.
 
-## License
-For open source projects, say how it is licensed.
+    1. **Duplicati:**
+      Con él hago una copia encriptada en **Google Drive**. Con este punto cubro la **tercera copia en remoto**.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+    2. **Syncthing:**
+      Lo tengo configurado para que las carpetas de origen estén en modo ***"Sólo enviar*** y las carpetas de destino en modo ***"Sólo recibir*** y con esto me aseguro de que si por error se borra algún arhcivo en las carpetas de destino no se van a borrar en las de origen, pero sí que se borran cuando en las de origen se eliminan.
+
+      Tengo configurados dos **equipos remotos** en Syncthing de forma que con éstos tengo cubiertas las **2 copias en medios distintos** y, sumado al punto anterior, he cubierto por completo el **método 3-2-1**.
+
+      - Equipo remoto 1:
+        Se trata de mi servidor Proxmox corriendo una VM de Ubuntu con Portainer y Syncthing a la que le tengo hecho passthrough de un HDD externo.
+
+      - Equipo remoto 2:
+        Se trata del servidor Proxmox de casa de mis padres, también con Portainer y Syncthing. Estas copias están **encriptadas**.
