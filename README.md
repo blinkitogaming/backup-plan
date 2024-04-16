@@ -58,9 +58,10 @@ Actualmente utilizo una mezcla de servicios y scripts.
 
 - Para las bases de datos diferenciaremos entre las genéricas (archivos .db) y las SQL que gestiono con MariaDB.
 
-    1. Las copias de las bases de datos genéricas (.db) se llevan a cabo de la misma forma que los contenedores Docker (punto anterior).
+    1) Las copias de las bases de datos genéricas (.db) se llevan a cabo de la misma forma que los contenedores Docker (punto anterior).
 
-    2. Las copias de las bases de datos SQL se llevan a cabo mediante un script que hace lo siguiente:
+    2) Las copias de las bases de datos SQL se llevan a cabo mediante un script que hace lo siguiente:
+    
       - Llama al servicio de MariaDB que se encarga de realizar la copia de seguridad.
       
       - Comprime la copia en un archivo ZIP.
@@ -77,10 +78,10 @@ Actualmente utilizo una mezcla de servicios y scripts.
 
 - Para los archivos que están en el array de discos principal del servidor uso **Duplicati** y **Syncthing**. *Aquí ya tengo cubierto todo lo importante, porque en el punto anterior ya han sido movidos los archivos de Docker al array principal*.
 
-    1. **Duplicati:**
+    1) **Duplicati:**
       Con él hago una copia encriptada en **Google Drive**. Con este punto cubro la **tercera copia en remoto**.
 
-    2. **Syncthing:**
+    2) **Syncthing:**
       Lo tengo configurado para que las carpetas de origen estén en modo ***"Sólo enviar*** y las carpetas de destino en modo ***"Sólo recibir*** y con esto me aseguro de que si por error se borra algún arhcivo en las carpetas de destino no se van a borrar en las de origen, pero sí que se borran cuando en las de origen se eliminan.
 
       Tengo configurados dos **equipos remotos** en Syncthing de forma que con éstos tengo cubiertas las **2 copias en medios distintos** y, sumado al punto anterior, he cubierto por completo el **método 3-2-1**.
