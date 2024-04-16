@@ -40,7 +40,7 @@ En mi caso tengo *3 copias* en total, aunque difiere un poco del estándar.
 * 1 copia está en casa de mis padres en un servidor Proxmox que yo administro. Es una copia híbrida porque es remota, pero con fácil acceso a la misma tanto en físico como en remoto y sin depender de servicios cloud de terceros.
 * 1 copia está en Google Drive.
 
-*Nota: las copias que no están en casa (la de casa de mis padres y la de Google Drive) están cifradas para evitar que una tercera persona pueda acceder a la información.*
+*Nota: las copias que no están en casa (la de casa de mis padres y la de Google Drive) están encriptadas para evitar que una tercera persona pueda acceder a la información.*
 
 ## Comprueba la fiabilidad de todas las copias
 
