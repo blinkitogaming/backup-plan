@@ -81,9 +81,9 @@ Actualmente utilizo una mezcla de servicios y scripts.
     2) **Syncthing:**
       Lo tengo configurado para que las carpetas de origen estén en modo ***"Sólo enviar*** y las carpetas de destino en modo ***"Sólo recibir*** y con esto me aseguro de que si por error se borra algún arhcivo en las carpetas de destino no se van a borrar en las de origen, pero sí que se borran cuando en las de origen se eliminan.
 
-     Tengo configurados dos **equipos remotos** en Syncthing de forma que con éstos tengo cubiertas las **2 copias en medios distintos** y, sumado al punto anterior, he cubierto por completo el **método 3-2-1**.
-     - Equipo remoto 1:
-       Se trata de mi servidor Proxmox corriendo una VM de Ubuntu con Portainer y Syncthing a la que le tengo hecho passthrough de un HDD externo.
+       Tengo configurados dos **equipos remotos** en Syncthing de forma que con éstos tengo cubiertas las **2 copias en medios distintos** y, sumado al punto anterior, he cubierto por completo el **método 3-2-1**.
+        - Equipo remoto 1:
+          Se trata de mi servidor Proxmox corriendo una VM de Ubuntu con Portainer y Syncthing a la que le tengo hecho passthrough de un HDD externo.
 
-     - Equipo remoto 2:
-       Se trata del servidor Proxmox de casa de mis padres, también con Portainer y Syncthing. Estas copias están **encriptadas**.
+        - Equipo remoto 2:
+          Se trata del servidor Proxmox de casa de mis padres, también con Portainer y Syncthing. Estas copias están **encriptadas**.
