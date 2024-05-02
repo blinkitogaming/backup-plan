@@ -59,13 +59,13 @@ Actualmente utilizo una mezcla de servicios y scripts.
 
     2) Las copias de las bases de datos SQL se llevan a cabo mediante un script que hace lo siguiente:
 
-      * Llama al servicio de MariaDB que se encarga de realizar la copia de seguridad.
+    * Llama al servicio de MariaDB que se encarga de realizar la copia de seguridad.
       
-      * Comprime la copia en un archivo ZIP.
+    * Comprime la copia en un archivo ZIP.
 
-      * Notifica por **Telegram** a través de un **Bot** y un **canal** si se han realizado correctamente o si ha ocurrido un error (***opcional***).
+    * Notifica por **Telegram** a través de un **Bot** y un **canal** si se han realizado correctamente o si ha ocurrido un error (***opcional***).
       
-      * Borra las copias de seguridad que tengan más de los días indicados.
+    * Borra las copias de seguridad que tengan más de los días indicados.
       
       Se ejecuta con un *cronjob*.
     
@@ -83,8 +83,8 @@ Actualmente utilizo una mezcla de servicios y scripts.
 
       Tengo configurados dos **equipos remotos** en Syncthing de forma que con éstos tengo cubiertas las **2 copias en medios distintos** y, sumado al punto anterior, he cubierto por completo el **método 3-2-1**.
 
-      * Equipo remoto 1:
-        Se trata de mi servidor Proxmox corriendo una VM de Ubuntu con Portainer y Syncthing a la que le tengo hecho passthrough de un HDD externo.
+    * Equipo remoto 1:
+      Se trata de mi servidor Proxmox corriendo una VM de Ubuntu con Portainer y Syncthing a la que le tengo hecho passthrough de un HDD externo.
 
-      * Equipo remoto 2:
-        Se trata del servidor Proxmox de casa de mis padres, también con Portainer y Syncthing. Estas copias están **encriptadas**.
+    * Equipo remoto 2:
+      Se trata del servidor Proxmox de casa de mis padres, también con Portainer y Syncthing. Estas copias están **encriptadas**.
