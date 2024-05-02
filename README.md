@@ -59,13 +59,13 @@ Actualmente utilizo una mezcla de servicios y scripts.
 
     2) Las copias de las bases de datos SQL se llevan a cabo mediante un script que hace lo siguiente:
       
-   - Llama al servicio de MariaDB que se encarga de realizar la copia de seguridad.
+       - Llama al servicio de MariaDB que se encarga de realizar la copia de seguridad.
         
-   - Comprime la copia en un archivo ZIP.
+       - Comprime la copia en un archivo ZIP.
 
-   - Notifica por **Telegram** a través de un **Bot** y un **canal** si se han realizado correctamente o si ha ocurrido un error (***opcional***).
+       - Notifica por **Telegram** a través de un **Bot** y un **canal** si se han realizado correctamente o si ha ocurrido un error (***opcional***).
         
-   - Borra las copias de seguridad que tengan más de los días indicados.
+       - Borra las copias de seguridad que tengan más de los días indicados.
       
       Se ejecuta con un *cronjob*.
     
