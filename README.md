@@ -1,18 +1,15 @@
 # Backup-plan
-
 ## Descripción
 
 Se trata de mi plan de respaldo para el homelab. Tratando de detallar lo máximo posible los procesos y la estructura de los backups, de forma que se reduzcan al máximo las posibilidades de pérdida de datos en caso de ocurrir algún desastre.
 
 ## ¿Cómo surge la idea?
 
-Para empezar, digamos que tengo un homelab muy humilde. Mi servidor principal es un ordenador montado por mí mismo en el que instalé Unraid y que ha pasado por varias modificaciones hasta acabar siendo como es hoy día.
+Actualmente tengo un servidor unRaid con 12TB de capacidad, un disco de paridad de 4TB, lo que me permite soportar el fallo de 1 disco y cuento con un SSD de 480GB como caché donde corren los contenedores Docker, las bases de datos y el propio caché del array.
 
-Actualmente monta un i3-10105, 8GB de RAM, tengo un array de 12TB de capacidad, un disco de paridad de 4TB, lo que me permite soportar el fallo de 1 disco y cuento con un SSD de 480GB como caché donde corren los contenedores Docker, las bases de datos y el propio caché del array. Por supuesto, todo con su correspondiente backup.
+Además de esto, tengo un Levono Thinkcentre M910q con Proxmox instalado con la idea en un futuro de ampliar formando un clúster de varios equipos similares.
 
-Además de esto, tengo un Levono M910q Tiny con Proxmox instalado que monta un i5-6600T y 16GB de RAM con la idea en un futuro de ampliar formando un clúster de varios equipos similares.
-
-En mi servidor principal donde tengo Unraid, a partir de ahora "Blinkserver", es donde he estado almacenando todo mi contenido digital estos últimos años y, salvo algún disco que ha fallado y he reemplazado, no he tenido ningún susto mayor. Y gracias al disco de paridad no tuve que sufrir la pérdida de ningún archivo.
+En mi servidor principal donde tengo unRaid es donde he estado almacenando todo mi contenido digital estos últimos años y, salvo algún disco que ha fallado y he reemplazado, no he tenido ningún susto mayor. Y gracias al disco de paridad no tuve que sufrir la pérdida de ningún archivo.
 
 Sin embargo, al ver cómo crece con el tiempo el tamaño de las carpetas y siendo ya padre, te da pavor la idea de que un día puedas perder alguno de tus archivos importantes.
 
