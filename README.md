@@ -67,9 +67,9 @@ Actualmente utilizo una mezcla de servicios y scripts.
         
        - Borra las copias de seguridad que tengan más de los días indicados.
       
-      Se ejecuta con un *cronjob*.
+       Se ejecuta con un *cronjob*.
     
-      Este script se encuentra en el archivo *db_backup.sh*.
+       Este script se encuentra en el archivo *db_backup.sh*.
 
   Una vez tengo el dump de las bases de datos (copia de seguridad realizada con el script) uso **Duplicati** de nuevo para llevar una al array princpal del servidor.
 
